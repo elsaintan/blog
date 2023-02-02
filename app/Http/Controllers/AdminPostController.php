@@ -17,7 +17,7 @@ class AdminPostController extends Controller
     {
         $data = Post::get();
 
-        return view('admin.index', compact('data'));
+        return view('admin.index', compact('data')); 
     }
 
     /**

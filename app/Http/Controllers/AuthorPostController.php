@@ -16,7 +16,7 @@ class AuthorPostController extends Controller
     public function index()
     {
         $data = Post::get();
-
+        //echo $data;
         return view('author.index', compact('data'));
     }
 

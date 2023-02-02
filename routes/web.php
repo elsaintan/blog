@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\AuthorPostController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +17,10 @@ use App\Http\Controllers\AdminPostController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'post'], function () {
     Route::get('/', [AdminPostController::class, 'index'])->name('post.index');
@@ -34,6 +33,9 @@ Route::group(['prefix' => 'post'], function () {
 
 });
 
-Route::get('/author', [App\Http\Controllers\AuthorPostController::class, 'index'])->name('author');
-Route::get('/author', [App\Http\Controllers\AuthorPostController::class, 'create'])->name('author.create');
-Route::get('/author', [App\Http\Controllers\AuthorPostController::class, 'store'])->name('author.store');
+Route::group(['prefix' => 'author'], function () {
+    Route::get('/', [AuthorPostController::class, 'index'])->name('author.index');
+    Route::get('/create', [AuthorPostController::class, 'create'])->name('author.create');
+    Route::post('/create', [AuthorPostController::class, 'store'])->name('author.store');
+});
+

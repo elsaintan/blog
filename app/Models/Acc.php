@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Acc extends Model
 {
     use HasFactory;
+
+    public $table = 'account';
+
+    protected $fillable = [
+
+        'username',
+        'password',
+        'name',
+        'role',
+    ];
 }
